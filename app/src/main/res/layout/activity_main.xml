@@ -60,15 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        app:srcCompat="@drawable/Jaws_240x360"
-        tools:ignore="MissingConstraints" />
-    <ImageView
-        android:id="@+id/imageView2"
-        android:scaleType="centerCrop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/Jurasik_park_240x360"
+        app:srcCompat="@drawable/jaws_240x360"
         tools:ignore="MissingConstraints" />
     <ImageView
         android:id="@+id/imageView3"
@@ -76,15 +68,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        app:srcCompat="@drawable/Stars_wars_240x360"
+        app:srcCompat="@drawable/stars_wars_240x360"
         tools:ignore="MissingConstraints" />
-    <ImageView
+        <ImageView
+            android:id="@+id/imageView2"
+            android:scaleType="centerCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/toy_story_240x360"
+            tools:ignore="MissingConstraints" />
+        <ImageView
         android:id="@+id/imageView4"
         android:scaleType="centerCrop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        app:srcCompat="@drawable/Toy_story_240x360"
+        app:srcCompat="@drawable/jurasik_park_240x360"
         tools:ignore="MissingConstraints" />
 
     </LinearLayout>
