@@ -39,7 +39,7 @@
             android:textColor="@android:color/white"
             android:background="?selectableItemBackgroundBorderless"/>
         <Button
-            android:id="@+id/btn_selections"
+            android:id="@+id/btn_collection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/btn_selections"

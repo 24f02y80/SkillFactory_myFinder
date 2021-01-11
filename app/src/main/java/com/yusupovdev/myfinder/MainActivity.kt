@@ -29,7 +29,7 @@ private fun initMenuButtons() {
     btn_watch_later.setOnClickListener {
         Toast.makeText(this, "Посмотреть позже", Toast.LENGTH_SHORT).show()
     }
-    btn_selections.setOnClickListener {
+    btn_collection.setOnClickListener {
         Toast.makeText(this, "Подборки", Toast.LENGTH_SHORT).show()
     }
     btn_setting.setOnClickListener {
