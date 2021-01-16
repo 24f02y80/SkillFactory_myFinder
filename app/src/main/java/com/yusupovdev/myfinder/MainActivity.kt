@@ -10,16 +10,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        initMenuButtons()
-//        button_menu.setOnClickListener{}
+        //       initMenuButtons()
+        //        button_menu.setOnClickListener{}
     }
 
     /*fun onClickToast(view: View){
         Toast.makeText(this,"Меню", Toast.LENGTH_SHORT).show()
 */
 
-private fun initMenuButtons() {
+/*private fun initMenuButtons() {
     button_menu.setOnClickListener {
         Toast.makeText(this, "Меню", Toast.LENGTH_SHORT).show()
     }
@@ -34,7 +33,6 @@ private fun initMenuButtons() {
     }
     btn_setting.setOnClickListener {
         Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
-    }
+    }*/
 
   }
-}
