@@ -164,6 +164,9 @@
             android:id="@+id/poster_1"
             android:layout_width="150dp"
             android:layout_height="200dp"
+            android:clickable="true"
+            android:stateListAnimator="@animator/press_button_anim"
+
             app:cardCornerRadius="15dp">
             <ImageView
                 android:layout_width="match_parent"
@@ -177,6 +180,9 @@
             android:id="@+id/poster_2"
             android:layout_width="150dp"
             android:layout_height="200dp"
+            android:clickable="true"
+            android:stateListAnimator="@animator/press_button_anim"
+
             app:cardCornerRadius="15dp">
 
             <ImageView
@@ -191,6 +197,9 @@
             android:id="@+id/poster_3"
             android:layout_width="150dp"
             android:layout_height="200dp"
+            android:clickable="true"
+            android:stateListAnimator="@animator/press_button_anim"
+
             app:cardCornerRadius="15dp">
             <ImageView
                 android:layout_width="match_parent"
@@ -204,6 +213,9 @@
             android:id="@+id/poster_4"
             android:layout_width="150dp"
             android:layout_height="200dp"
+            android:clickable="true"
+            android:stateListAnimator="@animator/press_button_anim"
+
             app:cardCornerRadius="15dp">
 
             <ImageView
