@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
             Film("Titanik", R.drawable.titanik, "This should be a description"),
             Film("Высотка", R.drawable.visotka, "This should be a description")
     )
+    private lateinit var filmsAdapter: FilmListRecyclerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
