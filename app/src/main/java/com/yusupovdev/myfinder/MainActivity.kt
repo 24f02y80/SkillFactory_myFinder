@@ -7,6 +7,18 @@ import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    val filmDataBase = listOf(
+            Film("American Ultra", R.drawable.AmericanUltra, "This should be a description"),
+            Film("Divergent", R.drawable.divergent, "This should be a description"),
+            Film("Avatar", R.drawable.ktoia, "This should be a description"),
+            Film("Кто Я", R.drawable.scale_1200, "This should be a description"),
+            Film("Марсиянин", R.drawable.marsianin, "This should be a description"),
+            Film("Шпионский мост", R.drawable.tomhanks, "This should be a description"),
+            Film("Titanik", R.drawable.titanik, "This should be a description"),
+            Film("Высотка", R.drawable.visotka, "This should be a description")
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
