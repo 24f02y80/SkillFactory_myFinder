@@ -59,6 +59,7 @@
                 app:srcCompat="@drawable/jurasik_park_240x360"
                 tools:ignore="MissingConstraints" />
         </LinearLayout>
+
     </androidx.cardview.widget.CardView>
         <TextView
             android:id="@+id/disclaimer"

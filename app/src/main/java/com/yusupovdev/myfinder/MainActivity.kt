@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     val filmDataBase = listOf(
-            Film("American Ultra", R.drawable.AmericanUltra, "This should be a description"),
+            Film("American Ultra", R.drawable.americanultra, "This should be a description"),
             Film("Divergent", R.drawable.divergent, "This should be a description"),
             Film("Avatar", R.drawable.ktoia, "This should be a description"),
             Film("Кто Я", R.drawable.scale_1200, "This should be a description"),
