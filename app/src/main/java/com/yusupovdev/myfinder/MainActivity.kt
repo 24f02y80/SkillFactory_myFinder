@@ -1,11 +1,14 @@
 package com.yusupovdev.myfinder
 
+import android.content.Intent
+import android.icu.text.Transliterator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
-
+private lateinit var filmsAdapter: FilmListRecyclerAdapter
 class MainActivity : AppCompatActivity() {
 
     val filmDataBase = listOf(
@@ -18,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             Film("Titanik", R.drawable.titanik, "This should be a description"),
             Film("Высотка", R.drawable.visotka, "This should be a description")
     )
-    private lateinit var filmsAdapter: FilmListRecyclerAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +30,28 @@ class MainActivity : AppCompatActivity() {
 
         //       initMenuButtons()
         //        button_menu.setOnClickListener{}
+
+        main_recycler.apply {
+            // Иницилизируем наш адаптер в конструктор передаем ананимно иницилизированный интнрфейс
+            //   осьавим его пока пустым, он нам понадобиться во второй части задания
+            filmsAdapter = FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener{
+                override fun click(film: Film) {
+                    // запускаем наше активити
+                    val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+                    startActivity(intent)
+                }
+                override fun click(film: Film, position:Int) {}
+            })
+            // Присваиваем адаптер
+            adapter = filmsAdapter
+            // Присвоим LayoutManager
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            // Применяем декоратор для отступов
+            val decorator = TopSpacingItemDecoration(8)
+            addItemDecoration(decorator)
+        }
+        // Кладем нашу БД в RV
+        filmsAdapter.addItems(filmDataBase)
 
         topAppBar.setOnMenuItemClickListener {
             when (it.itemId) {

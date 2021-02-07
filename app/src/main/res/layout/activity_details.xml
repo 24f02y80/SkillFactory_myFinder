@@ -32,7 +32,7 @@
                 android:fitsSystemWindows="true"
                 android:scaleType="centerCrop"
                 android:background="@color/colorAccent"
-                android:scr="@drawablr/ic_lancher_foreground"
+                android:src="@drawable/ic_launcher_foreground"
                 app:layout_collapseMode="parallax"/>
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/details_toolbar"

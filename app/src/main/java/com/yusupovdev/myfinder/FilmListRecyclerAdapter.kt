@@ -26,12 +26,12 @@ import kotlinx.android.synthetic.main.film_item.view.*
                 //Вызываем метод bind(), который мы создали и передаем туда объект
                 //из нашей базы данных с указанием позиции
                 holder.bind(items[position])
-                /*//Обрабатываем нажатие на весь элемент целиком(можно сделать на отдельный элемент
+                //Обрабатываем нажатие на весь элемент целиком(можно сделать на отдельный элемент
                 //напрмер, картинку) и вызываем метод нашего листенера, который мы получаем из
                 //конструктора адаптера
-                holder.itemView.item_container.setOnClickListener {
+                holder.itemView.setOnClickListener {
                     clickListener.click(items[position])
-                } */
+                }
             }
         }
     }
