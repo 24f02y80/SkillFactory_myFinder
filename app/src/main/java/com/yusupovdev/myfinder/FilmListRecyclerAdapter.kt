@@ -31,7 +31,7 @@ import kotlinx.android.synthetic.main.film_item.view.*
                 //конструктора адаптера
                 holder.itemView.item_container.setOnClickListener {
                     clickListener.click(items[position])
-                }*/
+                } */
             }
         }
     }
@@ -49,5 +49,6 @@ import kotlinx.android.synthetic.main.film_item.view.*
     //Интерфейс для обработки кликов
     interface OnItemClickListener {
         fun click(film: Film)
+        fun click(film: Film, position: Int)
     }
 }
