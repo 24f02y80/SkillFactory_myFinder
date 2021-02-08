@@ -36,6 +36,11 @@ class MainActivity : AppCompatActivity() {
             //   осьавим его пока пустым, он нам понадобиться во второй части задания
             filmsAdapter = FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener{
                 override fun click(film: Film) {
+                    // Создаем бандл и кладем туда объект с данными фильма
+                    val bundle = Bundle()
+                    // Первым параметром указывается ключ, по которому потом будем вторым
+                    //сам передаваемый обьект
+                    bundle.putParcelable("film", film)
                     // запускаем наше активити
                     val intent = Intent(this@MainActivity, DetailsActivity::class.java)
                     startActivity(intent)
