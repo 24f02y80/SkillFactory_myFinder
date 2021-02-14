@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">myFinder</string>
+    <string name="page_title">finder</string>
     <string name="disclaimer">https://www.movieposters.com/</string>
     <string name="btn_menu">Меню</string>
     <string name="btn_fav">Избранное</string>
