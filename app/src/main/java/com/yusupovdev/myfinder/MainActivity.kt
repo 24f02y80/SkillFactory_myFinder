@@ -1,72 +1,47 @@
 package com.yusupovdev.myfinder
 
-import android.content.Intent
-import android.icu.text.Transliterator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
-import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+
+
 class MainActivity : AppCompatActivity() {
-    val filmDataBase = listOf(
-            Film("American Ultra", R.drawable.americanultra, "This should be a description"),
-            Film("Divergent", R.drawable.divergent, "This should be a description"),
-            Film("Avatar", R.drawable.ktoia, "This should be a description"),
-            Film("Кто Я", R.drawable.scale_1200, "This should be a description"),
-            Film("Пираты Корибского моря", R.drawable.marsianin, "This should be a description"),
-            Film("Шпионский мост", R.drawable.tomhanks, "This should be a description"),
-            Film("Titanik", R.drawable.titanik, "This should be a description"),
-            Film("Высотка", R.drawable.visotka, "This should be a description")
-    )
-
-    private lateinit var filmsAdapter: FilmListRecyclerAdapter
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        main_recycler.apply {
-            // Иницилизируем наш адаптер в конструктор передаем ананимно иницилизированный интнрфейс
-            //   осьавим его пока пустым, он нам понадобиться во второй части задания
-            filmsAdapter = FilmListRecyclerAdapter(object: FilmListRecyclerAdapter.OnItemClickListener{
-                override fun click(film: Film) {
-                    // Создаем бандл и кладем туда объект с данными фильма
-                    val bundle = Bundle()
-                    // Первым параметром указывается ключ, по которому потом будем вторым
-                    //сам передаваемый обьект
-                    bundle.putParcelable("film", film)
-                    // запускаем наше активити
-                    val intent = Intent(this@MainActivity, DetailsActivity::class.java)
-                    intent.putExtras(bundle)
-                    startActivity(intent)
-                }
+        initNavigation()
 
-                override fun click(film: Film, position: Int)
-                {}
+        // запускаем фрагмент при старте
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_placeholder, HomeFragment())
+            .addToBackStack(null)
+            .commit()
 
-            })
-            // Присваиваем адаптер
-            adapter = filmsAdapter
-            // Присвоим LayoutManager
-            layoutManager = LinearLayoutManager(this@MainActivity)
-            // Применяем декоратор для отступов
-            val decorator = TopSpacingItemDecoration(8)
-            addItemDecoration(decorator)
-        }
-        // Кладем нашу БД в RV
-        filmsAdapter.addItems(filmDataBase)
+    }
 
-        topAppBar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.settings -> {
-                    Toast.makeText(this, "Настройки", Toast.LENGTH_SHORT).show()
-                    true
-                }
-                else -> false
-            }
-        }
+    fun launchDetailsFragment(film:Film) {
+        // Создаем посылку
+        val bundle = Bundle()
+        // Кладем наш фильм в "посылку"
+        bundle.putParcelable("film", film)
+        // кладем фрагмент с деталями в переменную
+        val fragment = DetailsFragment()
+        // Прикрепляем нашу "посылку" к фрагменту
+        fragment.arguments = bundle
+
+        // запускаем фрагмент
+        supportFragmentManager
+            .beginTransaction()
+            .add(R.id.fragment_placeholder, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun initNavigation() {
 
         bottom_navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {

@@ -49,6 +49,5 @@ import kotlinx.android.synthetic.main.film_item.view.*
     //Интерфейс для обработки кликов
     interface OnItemClickListener {
         fun click(film: Film)
-        fun click(film: Film, position: Int)
     }
 }
