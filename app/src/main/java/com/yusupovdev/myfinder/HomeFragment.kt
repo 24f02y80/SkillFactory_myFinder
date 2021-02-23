@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
+
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
+
     val filmDataBase = listOf(
         Film("American Ultra", R.drawable.americanultra, "This should be a description"),
         Film("Divergent", R.drawable.divergent, "This should be a description"),

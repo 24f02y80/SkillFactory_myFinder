@@ -7,6 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class Film(
         val title:String,
         val poster:Int,
-        val isInFavorites:Boolean = false,
-        val description:String
+        val description:String,
+        val isInFavorites:Boolean = false
 ):Parcelable
