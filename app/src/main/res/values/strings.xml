@@ -1,12 +1,8 @@
 <resources>
     <string name="app_name">myFinder</string>
-    <string name="page_title">finder</string>
-    <string name="disclaimer">https://www.movieposters.com/</string>
-    <string name="btn_menu">Меню</string>
     <string name="btn_fav">Избранное</string>
     <string name="btn_watch_later">Посмотреть позже</string>
     <string name="btn_selections">Подборки</string>
-    <string name="btn_setting">Настройки</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
