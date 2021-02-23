@@ -8,5 +8,5 @@ data class Film(
         val title:String,
         val poster:Int,
         val description:String,
-        val isInFavorites:Boolean = false
+        var isInFavorites:Boolean = false
 ):Parcelable
