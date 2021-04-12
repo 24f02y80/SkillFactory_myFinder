@@ -1,12 +1,15 @@
-package com.yusupovdev.myfinder
+package com.yusupovdev.myfinder.view.rv_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.yusupovdev.myfinder.domain.Film
+import com.yusupovdev.myfinder.view.rv_viewholders.FilmViewHolder
+import com.yusupovdev.myfinder.R
 import kotlinx.android.synthetic.main.film_item.view.*
 
-    //в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса активити
-    class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+//в параметр передаем слушатель, чтобы мы потом могли обрабатывать нажатия из класса активити
+class FilmListRecyclerAdapter(private val clickListener: OnItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     //Здесь у нас хранится список элементов для RV
     private val items = mutableListOf<Film>()
 
@@ -29,7 +32,7 @@ import kotlinx.android.synthetic.main.film_item.view.*
                 //Обрабатываем нажатие на весь элемент целиком(можно сделать на отдельный элемент
                 //напрмер, картинку) и вызываем метод нашего листенера, который мы получаем из
                 //конструктора адаптера
-                holder.itemView.setOnClickListener {
+                holder.itemView.item_container.setOnClickListener {
                     clickListener.click(items[position])
                 }
             }
@@ -49,6 +52,5 @@ import kotlinx.android.synthetic.main.film_item.view.*
     //Интерфейс для обработки кликов
     interface OnItemClickListener {
         fun click(film: Film)
-        fun click(film: Film, position: Int)
     }
 }
