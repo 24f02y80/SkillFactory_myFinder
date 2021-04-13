@@ -1,6 +1,6 @@
 package com.yusupovdev.myfinder.utils
 
-import com.yusupovdev.myfinder.data.TmdbFilm
+import com.yusupovdev.myfinder.data.Entity.TmdbFilm
 import com.yusupovdev.myfinder.domain.Film
 
 object Converter {

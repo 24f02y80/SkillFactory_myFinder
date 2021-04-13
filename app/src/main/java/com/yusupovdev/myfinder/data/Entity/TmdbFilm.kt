@@ -1,4 +1,6 @@
-package com.yusupovdev.myfinder.data
+package com.yusupovdev.myfinder.data.Entity
+
+import com.google.gson.annotations.SerializedName
 
 data class TmdbFilm(
     @SerializedName("adult")
