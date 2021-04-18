@@ -61,6 +61,7 @@ class HomeFragment : Fragment() {
         //Кладем нашу БД в RV
         viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
              filmsDataBase = it
+            filmsAdapter.addItems(it)
         })
 
     }
