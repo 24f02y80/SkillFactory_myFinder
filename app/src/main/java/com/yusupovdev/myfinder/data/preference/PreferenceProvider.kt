@@ -20,7 +20,7 @@ class PreferenceProvider(context: Context){
     }
     // Category pref
     // Сохраняем категорию
-    fun savedefaultCategory(category:String) {
+    fun saveDefaultCategory(category:String) {
         preference.edit { putString(KEY_DEFAULT_CATEGORY, category) }
     }
     // Забираем категорию
