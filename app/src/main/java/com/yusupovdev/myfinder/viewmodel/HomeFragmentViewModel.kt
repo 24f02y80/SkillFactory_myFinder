@@ -18,7 +18,7 @@ class HomeFragmentViewModel : ViewModel() {
         getFilms()
          }
 
-    private fun getFilms() {
+    fun getFilms() {
         interactor.getFilmsFromApi(1, object : ApiCallback {
             override fun onSuccess(films: List<Film>) {
                 filmsListLiveData.postValue(films)
