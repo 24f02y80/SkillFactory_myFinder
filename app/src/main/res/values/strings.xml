@@ -8,4 +8,5 @@
     <string name="btn_selections">Подборки</string>
     <string name="btn_setting">Настройки</string>
     <string name="menu_home_title_text">Главная</string>
+    <string name="menu_settings_title_text">Настройки</string>
 </resources>
