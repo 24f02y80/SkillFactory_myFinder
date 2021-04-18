@@ -4,6 +4,7 @@ import com.yusupovdev.myfinder.di.modules.DatabaseModule
 import com.yusupovdev.myfinder.di.modules.DomainModule
 import com.yusupovdev.myfinder.di.modules.RemoteModule
 import com.yusupovdev.myfinder.viewmodel.HomeFragmentViewModel
+import com.yusupovdev.myfinder.viewmodel.SettingsFragmentViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -19,4 +20,6 @@ import javax.inject.Singleton
 interface AppComponent {
     //метод для того, чтобы появилась внедрять зависимости в HomeFragmentViewModel
     fun inject(homeFragmentViewModel: HomeFragmentViewModel)
+    // Метод для того, чтобы появилась возможнрсть внедрять зависиимости в SettingsFragmentViewModel
+    fun inject(settingsFragmentViewModel: SettingsFragmentViewModel)
 }
