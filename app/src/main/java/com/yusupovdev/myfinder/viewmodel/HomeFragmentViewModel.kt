@@ -23,7 +23,9 @@ class HomeFragmentViewModel : ViewModel() {
             override fun onSuccess(films: List<Film>) {
                 filmsListLiveData.postValue(films)
             }
+            // Вызывается когда пролблемы с сетью
             override fun onFailure() {
+                filmsListLiveData.postValue(interactor.getFilmsFromDB())
             }
         })
 
