@@ -5,6 +5,7 @@ import com.yusupovdev.myfinder.data.Entity.TmdbResultsDto
 import com.yusupovdev.myfinder.data.MainRepository
 import com.yusupovdev.myfinder.data.TmdbApi
 import com.yusupovdev.myfinder.data.preference.PreferenceProvider
+import com.yusupovdev.myfinder.utils.Converter
 import com.yusupovdev.myfinder.viewmodel.HomeFragmentViewModel
 import retrofit2.Call
 import retrofit2.Response
@@ -17,7 +18,10 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
             retrofit2.Callback<TmdbResultsDto> {
             override fun onResponse(call: Call<TmdbResultsDto>, response: Response<TmdbResultsDto>) {
                 //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
-                callback.onSuccess(com.yusupovdev.myfinder.utils.Converter.convertApiListToDtoList(response.body()?.tmdbFilms))
+                val list = Converter.convertApiListToDtoList(response.body()?.tmdbFilms)
+                // Кладем фильмы в БД
+                list.forEach { repo.putToDb(film = it) }
+                callback.onSuccess(list)
             }
 
             override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
