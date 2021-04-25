@@ -13,6 +13,7 @@ import retrofit2.Response
 class Interactor(private val repo: MainRepository, private val retrofitService: TmdbApi, private val preferences: PreferenceProvider) {
     //В конструктор мы будем передавать коллбэк из вью модели, чтобы реагировать на то, когда фильмы будут получены
     //и страницу, которую нужно загрузить (это для пагинации)
+
     fun getFilmsFromApi(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
         retrofitService.getFilms(getDefaultCategoryFromPreferences(), API.KEY, "ru-RU", page).enqueue(object :
             retrofit2.Callback<TmdbResultsDto> {
@@ -38,4 +39,6 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
 
     // Метод получения настроек
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
+    // Метод получения метода репозитория для вытаскивания фильма из БД
+    fun getFilmsFromDB(): List<Film> = repo.getAllFromDb()
 }
