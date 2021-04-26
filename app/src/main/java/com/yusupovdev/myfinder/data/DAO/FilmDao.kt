@@ -14,6 +14,6 @@ interface FilmDao {
     fun getCachedFilms(): List<Film>
 
     //Кладем списком в БД, в случае коныликта перезаписываем
-    @Insert(OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(list: List<Film>)
 }

@@ -16,7 +16,8 @@ class MainRepository(private val filmDao: FilmDao) {
         }
     }
 
-    fun getAllFromDB(): List<Film> {
+
+    fun getAllFromDb(): List<Film> {
         return filmDao.getCachedFilms()
     }
 }

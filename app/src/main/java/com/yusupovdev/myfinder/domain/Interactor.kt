@@ -22,7 +22,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
                 //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
                 val list = Converter.convertApiListToDtoList(response.body()?.tmdbFilms)
                 // Кладем фильмы в БД
-                list.forEach { repo.putToDb(film = it) }
+                list.forEach { repo.putToDb(list) }
                 callback.onSuccess(list)
             }
 
