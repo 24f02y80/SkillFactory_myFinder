@@ -1,8 +1,7 @@
 package com.yusupovdev.myfinder.data
 import android.content.ContentValues
 import android.database.Cursor
-import com.yusupovdev.myfinder.R
-import com.yusupovdev.myfinder.domain.Film
+import com.yusupovdev.myfinder.data.Entity.Film
 
 import com.yusupovdev.myfinder.data.db.DatabaseHelper
 

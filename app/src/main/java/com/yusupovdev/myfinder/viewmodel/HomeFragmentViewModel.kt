@@ -2,7 +2,7 @@ package com.yusupovdev.myfinder.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.yusupovdev.myfinder.App
-import com.yusupovdev.myfinder.domain.Film
+import com.yusupovdev.myfinder.data.Entity.Film
 import com.yusupovdev.myfinder.domain.Interactor
 import javax.inject.Inject
 

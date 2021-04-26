@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.yusupovdev.myfinder.domain.Film
+import com.yusupovdev.myfinder.data.Entity.Film
 import com.yusupovdev.myfinder.view.rv_adapters.FilmListRecyclerAdapter
 import com.yusupovdev.myfinder.view.rv_adapters.TopSpacingItemDecoration
 import com.yusupovdev.myfinder.databinding.FragmentFavoritesBinding

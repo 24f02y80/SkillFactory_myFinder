@@ -1,6 +1,7 @@
 package com.yusupovdev.myfinder.domain
 
 import com.yusupovdev.myfinder.API
+import com.yusupovdev.myfinder.data.Entity.Film
 import com.yusupovdev.myfinder.data.Entity.TmdbResultsDto
 import com.yusupovdev.myfinder.data.MainRepository
 import com.yusupovdev.myfinder.data.TmdbApi

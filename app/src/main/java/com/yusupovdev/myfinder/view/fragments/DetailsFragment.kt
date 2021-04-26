@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.yusupovdev.myfinder.domain.Film
+import com.yusupovdev.myfinder.data.Entity.Film
 import com.yusupovdev.myfinder.R
 import com.yusupovdev.myfinder.data.ApiConstants
 import com.yusupovdev.myfinder.databinding.FragmentDetailsBinding

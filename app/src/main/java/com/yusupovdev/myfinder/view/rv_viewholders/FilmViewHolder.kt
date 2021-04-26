@@ -2,7 +2,7 @@ package com.yusupovdev.myfinder.view.rv_viewholders
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.yusupovdev.myfinder.domain.Film
+import com.yusupovdev.myfinder.data.Entity.Film
 import com.bumptech.glide.Glide
 import com.yusupovdev.myfinder.data.ApiConstants
 import kotlinx.android.synthetic.main.film_item.view.*

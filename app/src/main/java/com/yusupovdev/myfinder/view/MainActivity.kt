@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.yusupovdev.myfinder.*
 import com.yusupovdev.myfinder.databinding.ActivityMainBinding
-import com.yusupovdev.myfinder.domain.Film
+import com.yusupovdev.myfinder.data.Entity.Film
 import com.yusupovdev.myfinder.view.fragments.*
 
 

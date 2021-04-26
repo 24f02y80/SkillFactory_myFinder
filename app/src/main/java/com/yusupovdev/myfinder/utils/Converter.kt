@@ -1,7 +1,7 @@
 package com.yusupovdev.myfinder.utils
 
 import com.yusupovdev.myfinder.data.Entity.TmdbFilm
-import com.yusupovdev.myfinder.domain.Film
+import com.yusupovdev.myfinder.data.Entity.Film
 
 object Converter {
     fun convertApiListToDtoList(list: List<TmdbFilm>?): List<Film> {

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.yusupovdev.myfinder.domain.Film
+import com.yusupovdev.myfinder.data.Entity.Film
 import com.yusupovdev.myfinder.view.rv_adapters.TopSpacingItemDecoration
 import com.yusupovdev.myfinder.databinding.FragmentHomeBinding
 import com.yusupovdev.myfinder.utils.AnimationHelper
