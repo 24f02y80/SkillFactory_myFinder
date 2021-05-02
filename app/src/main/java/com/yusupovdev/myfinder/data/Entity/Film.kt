@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @Entity(tableName = "cached_films", indices = [Index(value = ["title"], unique = true)])
-data class Film(
+data class                                      Film(
         @PrimaryKey(autoGenerate = true) val id: Int = 0,
         @ColumnInfo(name = "title") val title: String,
         @ColumnInfo(name = "poster_path") val poster: String, //У нас будет приходить ссылка на картинку, так что теперь это String

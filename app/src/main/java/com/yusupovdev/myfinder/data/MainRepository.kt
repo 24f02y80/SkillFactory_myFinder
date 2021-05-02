@@ -1,6 +1,7 @@
 package com.yusupovdev.myfinder.data
 import android.content.ContentValues
 import android.database.Cursor
+import androidx.lifecycle.LiveData
 import com.yusupovdev.myfinder.data.DAO.FilmDao
 import com.yusupovdev.myfinder.data.Entity.Film
 
@@ -17,7 +18,6 @@ class MainRepository(private val filmDao: FilmDao) {
     }
 
 
-    fun getAllFromDb(): List<Film> {
-        return filmDao.getCachedFilms()
-    }
+    fun getAllFromDb(): LiveData<List<Film>> = filmDao.getCachedFilms()
+
 }

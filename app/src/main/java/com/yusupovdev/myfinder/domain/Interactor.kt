@@ -1,5 +1,6 @@
 package com.yusupovdev.myfinder.domain
 
+import androidx.lifecycle.LiveData
 import com.yusupovdev.myfinder.API
 import com.yusupovdev.myfinder.data.Entity.Film
 import com.yusupovdev.myfinder.data.Entity.TmdbResultsDto
@@ -23,7 +24,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
                 val list = Converter.convertApiListToDtoList(response.body()?.tmdbFilms)
                 // Кладем фильмы в БД
                 list.forEach { repo.putToDb(list) }
-                callback.onSuccess(list)
+                callback.onSuccess()
             }
 
             override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
@@ -41,5 +42,5 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
     // Метод получения настроек
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
     // Метод получения метода репозитория для вытаскивания фильма из БД
-    fun getFilmsFromDB(): List<Film> = repo.getAllFromDb()
+    fun getFilmsFromDB(): LiveData<List<Film>> = repo.getAllFromDb()
 }
