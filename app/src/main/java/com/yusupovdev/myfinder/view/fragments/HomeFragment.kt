@@ -5,24 +5,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yusupovdev.myfinder.data.Entity.Film
 import com.yusupovdev.myfinder.view.rv_adapters.TopSpacingItemDecoration
 import com.yusupovdev.myfinder.databinding.FragmentHomeBinding
 import com.yusupovdev.myfinder.utils.AnimationHelper
+import com.yusupovdev.myfinder.utils.AutoDisposable
+import com.yusupovdev.myfinder.utils.addTo
 import com.yusupovdev.myfinder.view.MainActivity
 import com.yusupovdev.myfinder.view.rv_adapters.FilmListRecyclerAdapter
 import com.yusupovdev.myfinder.viewmodel.HomeFragmentViewModel
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.flow.observeOn
+import kotlinx.coroutines.flow.subscribe
+import kotlinx.coroutines.flow.subscribeOn
 import java.util.*
 
 class HomeFragment : Fragment() {
     private val viewModel by lazy {
         ViewModelProvider.NewInstanceFactory().create(HomeFragmentViewModel::class.java)
     }
+    private val autoDisposable = AutoDisposable()
+
     private lateinit var filmsAdapter: FilmListRecyclerAdapter
     private lateinit var binding: FragmentHomeBinding
     private var filmsDataBase = listOf<Film>()
@@ -38,6 +47,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        autoDisposable.bindTo(lifecycle)
         retainInstance = true
     }
 
@@ -60,15 +70,27 @@ class HomeFragment : Fragment() {
 
         //находим наш RV
         initRecyckler()
-        //Кладем нашу БД в RV
-        viewModel.filmsListLiveData.observe(viewLifecycleOwner, Observer<List<Film>> {
-             filmsDataBase = it
-            filmsAdapter.addItems(it)
-        })
 
+        //Кладем нашу БД в RV
+        viewModel.filmsListData
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { list ->
+                filmsAdapter.addItems(list)
+                filmsDataBase = list
+            }
+            .addTo(autoDisposable)
+        viewModel.showProgressBar
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                binding.progressBar.isVisible = it
+            }
+            .addTo(autoDisposable)
     }
 
-    fun initPullRefresh() {
+
+    private fun initPullRefresh() {
         // Вешаем слушателя, чтобы вызвался  pull to refresh
         binding.pullToRefresh.setOnRefreshListener {
             // Чистим адптер (items нужно сделать паблик или создать для этого публичный метод)

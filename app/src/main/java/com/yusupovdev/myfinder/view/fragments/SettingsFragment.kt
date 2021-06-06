@@ -42,7 +42,7 @@ class SettingsFragment : Fragment() {
         })
 
         // слушатель ля отправки нового состояния настройки
-        binding.radioGroup.setOnCheckedChangeListener { group, checkedId -> when(checkedId) {
+        binding.radioGroup.setOnCheckedChangeListener { _, checkedId -> when(checkedId) {
             R.id.radio_popular -> viewModel.putCategoryProperty(POPULAR_CATEGORY)
             R.id.radio_top_rated -> viewModel.putCategoryProperty(TOP_RATED_CATEGORY)
             R.id.radio_upcoming -> viewModel.putCategoryProperty(UPCOMING_CATEGORY)

@@ -1,35 +1,47 @@
 package com.yusupovdev.myfinder.domain
 
-import androidx.lifecycle.LiveData
-import com.yusupovdev.myfinder.API
 import com.yusupovdev.myfinder.data.Entity.Film
 import com.yusupovdev.myfinder.data.Entity.TmdbResultsDto
 import com.yusupovdev.myfinder.data.MainRepository
 import com.yusupovdev.myfinder.data.TmdbApi
 import com.yusupovdev.myfinder.data.preference.PreferenceProvider
 import com.yusupovdev.myfinder.utils.Converter
-import com.yusupovdev.myfinder.viewmodel.HomeFragmentViewModel
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subjects.BehaviorSubject
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 
 class Interactor(private val repo: MainRepository, private val retrofitService: TmdbApi, private val preferences: PreferenceProvider) {
+    var progressBarState: BehaviorSubject<Boolean> = BehaviorSubject.create()
+
     //В конструктор мы будем передавать коллбэк из вью модели, чтобы реагировать на то, когда фильмы будут получены
     //и страницу, которую нужно загрузить (это для пагинации)
 
-    fun getFilmsFromApi(page: Int, callback: HomeFragmentViewModel.ApiCallback) {
+    fun getFilmsFromApi(page: Int) {
+        // показываем ProgressBar
+        progressBarState.onNext(true)
+
+        //Метод getDefaultCategoryFromPreferences() будет нам получать при каждом запросе нужный нам список фильмов
         retrofitService.getFilms(getDefaultCategoryFromPreferences(), API.KEY, "ru-RU", page).enqueue(object :
-            retrofit2.Callback<TmdbResultsDto> {
+            Callback<TmdbResultsDto> {
             override fun onResponse(call: Call<TmdbResultsDto>, response: Response<TmdbResultsDto>) {
-                //При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
                 val list = Converter.convertApiListToDtoList(response.body()?.tmdbFilms)
                 // Кладем фильмы в БД
-                list.forEach { repo.putToDb(list) }
-                callback.onSuccess()
+                // При успехе мы вызываем метод передаем onSuccess и в этот коллбэк список фильмов
+                Completable.fromSingle <List<Film>>{
+                    repo.putToDb(list)
+                }
+                    .subscribeOn(Schedulers.io())
+                    .subscribe()
+                progressBarState.onNext(false)
             }
 
             override fun onFailure(call: Call<TmdbResultsDto>, t: Throwable) {
                 //В случае провала вызываем другой метод коллбека
-                callback.onFailure()
+                progressBarState.onNext(false)
             }
         })
     }
@@ -41,6 +53,7 @@ class Interactor(private val repo: MainRepository, private val retrofitService: 
 
     // Метод получения настроек
     fun getDefaultCategoryFromPreferences() = preferences.getDefaultCategory()
+
     // Метод получения метода репозитория для вытаскивания фильма из БД
-    fun getFilmsFromDB(): LiveData<List<Film>> = repo.getAllFromDb()
+    fun getFilmsFromDB(): Observable<List<Film>> = repo.getAllFromDb()
 }

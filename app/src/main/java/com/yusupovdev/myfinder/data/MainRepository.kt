@@ -1,11 +1,8 @@
 package com.yusupovdev.myfinder.data
-import android.content.ContentValues
-import android.database.Cursor
-import androidx.lifecycle.LiveData
 import com.yusupovdev.myfinder.data.DAO.FilmDao
 import com.yusupovdev.myfinder.data.Entity.Film
+import io.reactivex.rxjava3.core.Observable
 
-import com.yusupovdev.myfinder.data.db.DatabaseHelper
 import java.util.concurrent.Executors
 
 class MainRepository(private val filmDao: FilmDao) {
@@ -18,6 +15,6 @@ class MainRepository(private val filmDao: FilmDao) {
     }
 
 
-    fun getAllFromDb(): LiveData<List<Film>> = filmDao.getCachedFilms()
+    fun getAllFromDb(): Observable<List<Film>> = filmDao.getCachedFilms()
 
 }
